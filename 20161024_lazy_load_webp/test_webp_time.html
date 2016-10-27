@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>js判断浏览器是否支持webp所需要时间</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+
+    <div id="text">sdf</div>
+
+    <script type="text/javascript">
+        var nTimeStart, nTimeEnd, nMistiming;
+        var addText = function(text) {
+            document.getElementById("text").innerHTML += text + "<br />"
+        }
+        var testFunc = function() {
+            nTimeStart = +new Date();
+            addText("程序开始："+nTimeStart);
+            var webpImg = new Image;
+            webpImg.onload=function(){
+                var canWebp = !!(webpImg.height>0 && webpImg.width>0);
+                nTimeEnd = +new Date();
+                nMistiming = nTimeEnd - nTimeStart;
+                addText("程序结束(success,"+canWebp+")："+nTimeEnd);
+                addText("程序用时："+nMistiming);
+            };
+            webpImg.onerror=function(){
+                nTimeEnd = +new Date();
+                nMistiming = nTimeEnd - nTimeStart;
+                addText("程序结束(error)："+nTimeEnd);
+                addText("程序用时："+nMistiming);
+            };
+            webpImg.src = "data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA";
+        }
+        testFunc();
+    </script>
+
+</body>
+</html>

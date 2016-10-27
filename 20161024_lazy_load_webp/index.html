@@ -313,7 +313,7 @@
             trueSrc:'#src',
             webpFunc: function(src) {
                 var arrTest = src.match(/^(http:\/\/img0\.pcauto\.com\.cn\/pcauto\/(\d{4})\/(\d+)\/[^.]+\.)(jpg|png)$/i);
-                if(parseInt(''+arrTest[2]+arrTest[3]) > 161023) {
+                if(arrTest && parseInt(''+arrTest[2]+arrTest[3]) > 161023) {
                     return arrTest[1] + 'webp';
                 }else{
                     return src;
