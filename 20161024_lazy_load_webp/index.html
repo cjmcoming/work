@@ -15,11 +15,19 @@
         -->
         <p>
             <img src="http://img0.pcauto.com.cn/pcauto/1309/13/3059862_blank.gif" #src="http://img0.pcauto.com.cn/pcauto/1610/24/8920792_8102480_Hydrangeas_thumb.jpg" />
+
+            <img src="http://img0.pcauto.com.cn/pcauto/1309/13/3059862_blank.gif" #src="http://img0w.pcauto.com.cn/pcauto/1611/10/spcgroup/width_800-qua_30/9013672_dsc_0622.jpg" />
+
+            <img src="http://img0.pcauto.com.cn/pcauto/1309/13/3059862_blank.gif" #src="http://imgrt.pconline.com.cn/images/upload/upc/tx/auto5/1603/23/c29/19532429_19532429_1458719383628/spcgroup/bbs/center/400x300.jpg" />
+
+            <img src="http://img0.pcauto.com.cn/pcauto/1309/13/3059862_blank.gif" #src="http://imgw.pcauto.com.cn/images/pcautogallery/modle/article/201611/9/spcgroup/width_800-qua_30/14786843334930060.jpg" />
         </p>
     </div>
 
+
+    <script src="http://js.3conline.com/min2/temp/v2/plugin-lazy_webp.js" charset="utf-8"></script>
     <script type="text/javascript">
-        /*! lazy svn/doc/javascript/%cd%bc%c6%ac%b0%b4%d0%e8%bc%d3%d4%d8/lazy.js */
+        /*! lazy svn/doc/javascript/%cd%bc%c6%ac%b0%b4%d0%e8%bc%d3%d4%d8/lazy.js 
         var Lazy = {
             eCatch: {},
             eHandle: 0,
@@ -52,7 +60,7 @@
                 try{
                     array = Array.prototype.slice.call(nodes,0);
                 }catch(e){
-                    /*ie6-8*/
+                    //ie6-8
                     for(var i=0,len=nodes.length;i<len;i++){
                         array.push(nodes[i]);
                     }
@@ -306,25 +314,47 @@
                 }
             }
         };
+        */
 
         //图片按需
-        var pcLazy = Lazy.create({
-            lazyId:"lazyLoad",
-            trueSrc:'#src',
-            webpFunc: function(src) {
-                var arrTest = src.match(/^(http:\/\/img0\.pcauto\.com\.cn\/pcauto\/(\d{4})\/(\d+)\/[^.]+\.)(jpg|png)$/i);
-                if(arrTest && parseInt(''+arrTest[2]+arrTest[3]) > 161023) {
+var pcLazy = Lazy.create({
+    lazyId:"lazyLoad",
+    trueSrc:'#src',
+    /*
+    //pc端文章页
+    webpFunc: function(src) {
+        var arrTest = src.match(/^(http:\/\/img0\.pcauto\.com\.cn\/pcauto\/(\d{4})\/(\d+)\/[^.]+\.)(jpg|png)$/i);
+        if(arrTest && parseInt(''+arrTest[2]+arrTest[3]) > 161023) {
+            return arrTest[1] + 'webp';
+        }else{
+            return src;
+        }
+    },
+    */
+   
+    //wap端文章页||列表页
+    webpFunc: function(src) {
+        var arrTest = src.match(/^(http:\/\/img(0|0w|rt|0rt)\.pc(?:auto|online)\.com\.cn\/(?:pcauto|images\/upload\/upc\/tx\/auto5)\/(\d{4})\/(\d+)\/[^.]+\.)(jpg|png)$/i);
+        if(arrTest) {
+            if(arrTest[2] == '0') {
+                if(parseInt(''+arrTest[3]+arrTest[4]) > 161109) {
                     return arrTest[1] + 'webp';
                 }else{
                     return src;
                 }
-            },
-            //jsList:jsList_,
-            offset:500,
-            delay:100,
-            delay_tot:1000
-        });
-        Lazy.init(pcLazy);
+            }else{
+                return arrTest[0] + '.webp';
+            }
+        }else{
+            return src;
+        }
+    },
+    //jsList:jsList_,
+    offset:500,
+    delay:100,
+    delay_tot:1000
+});
+Lazy.init(pcLazy);
     </script>
 
 </body>

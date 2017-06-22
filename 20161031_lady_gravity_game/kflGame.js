@@ -272,11 +272,11 @@ var kflGame = (function() {
 				this.aZindex2 = [];
 				this.aZindex3 = [];
 
-				this.nCoinSpeed = 3;
+				this.nCoinSpeed = 6;
 				this.nRoleSpeedY = 0.98;
 				this.nTimer = 30;
-				this.nTimerTick = 90;
-				this.nAddCoinTick = 60;
+				this.nTimerTick = 70;
+				this.nAddCoinTick = 40;
 				this.nMeter = 0;
 				this.nGameStep = 0;
 				this.bGameOver = false;
@@ -410,7 +410,7 @@ var kflGame = (function() {
 				}
 				if(_sel.oGameRole.testOverlap(oItem, _sel.nCanvasW, _sel.nCanvasH, _sel.bAndroid) ) {
 					_sel.aZindex2.splice(i, 1);
-					_sel.nMeter += (Math.round(Math.random() * 4) + 1);
+					_sel.nMeter += (Math.round(Math.random() * 2) + 1);
 					(_sel.nMeter > 88) && (_sel.nMeter = 88);
 					_sel.oGameText2.setText(_sel.nMeter < 10 ? '0'+_sel.nMeter : _sel.nMeter);
 					_sel.oGameRole.nImgNum = 2;
